@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react';
+import ReactDOM from 'react-dom';
 
 class App extends Component {
   constructor() {
@@ -11,10 +11,12 @@ class App extends Component {
   }
 
   render() {
+    return (
     <div>
       <h3>Neo to Gas baby</h3>
     </div>
+    );
   }
 }
 
-export default ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
