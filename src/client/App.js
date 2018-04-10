@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Container } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 
 class App extends Component {
@@ -40,11 +41,12 @@ class App extends Component {
 
   render() {
     return (
-    <div>
-      <h3>Neo to Gas baby</h3>
-      <footer>{this.state.wallet.address}</footer>
-      <Wallet wallet={this.state.wallet} />
-    </div>
+    <Container>
+      <div>
+        <h3>Neo to Gas baby</h3>
+        <Wallet wallet={this.state.wallet} />
+      </div>
+    </Container>
     );
   }
 }
