@@ -21,14 +21,21 @@ app.use(morgan('dev'))
 
 app.use(publicFiles);
 
-router.get('/gas', async (ctx, next) => {
+router.get('/gas1', async (ctx, next) => {
   await axios
     .get(`https://neoscan.io/api/main_net/v1/get_address/${ADDRESS}`)
     .then((response) => {
       ctx.response.body = response.data;
     })
     .catch(err => ctx.response.body = err);
-
+})
+router.get('/gas2', async (ctx, next) => {
+  await axios
+    .get(`https://api.neonwallet.com/v2/address/balance/${ADDRESS}`)
+    .then((response) => {
+      ctx.response.body = response.data;
+    })
+    .catch(err => ctx.response.body = err);
 })
 
 app.use(router.routes())
