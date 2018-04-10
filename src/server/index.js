@@ -45,7 +45,25 @@ router.get('/v1/wallet/:wallet', async (ctx, next) => {
       ctx.response.body = response.data;
     })
     .catch(err => ctx.response.body = err);
-})
+});
+
+router.get('/v1/current_price/', async (ctx, next) => {
+  let prices = { neo: 0, gas: 0};
+   await axios
+      .get('https://api.coinmarketcap.com/v1/ticker/NEO/?convert=USD')
+      .then(async (response) => {
+
+        prices['neo'] = Number(Number(response.data[0].price_usd).toFixed(2));
+        await axios
+          .get('https://api.coinmarketcap.com/v1/ticker/GAS/?convert=USD')
+          .then((response) => {
+            prices['gas'] = Number(Number(response.data[0].price_usd).toFixed(2));
+            ctx.response.body = prices;
+          })
+          .catch(error => console.log(error));
+      })
+      .catch(error => ctx.request.body = 'error caught');
+});
 
 app.use(router.routes())
 

@@ -52,19 +52,34 @@ class App extends Component {
       })
   }
 
+  getCurrentPrices() {
+    axios.get('/v1/current_price')
+      .then((response) => {
+        let neo_usd = response.data['neo'];
+        let gas_usd = response.data['gas'];
+        this.setState({
+          neo_usd,
+          gas_usd
+        });
+      })
+      .catch(error => console.log(`caught ${error} trying to get current usd value`));
+  }
+
   componentDidMount() {
-    // this.populateAddress();
+    this.getCurrentPrices();
   }
 
   render() {
     return (
-    <Container>
       <div>
-      <Input type="text" onChange={(e, data) => this.setState({ address: data.value})} />
-      <Button onClick={() => this.handleAddressClick()}>See Details</Button>
-      <Wallet wallet={this.state.wallet} />        
-      </div>
+    <Container>
+      <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />        
     </Container>
+    <Container textAlign={'center'}>
+      <Input size='medium' type="text" onChange={(e, data) => this.setState({ address: data.value})} />
+      <Button onClick={() => this.handleAddressClick()}>See Details</Button>
+    </Container>
+    </div>
     );
   }
 }
