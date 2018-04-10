@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { Container } from 'semantic-ui-react';
+import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 
 class App extends Component {
@@ -18,6 +18,23 @@ class App extends Component {
     };
   }
 
+  handleAddressClick() {
+    axios.get(`/v1/wallet/${this.state.address}`)
+      .then(response => {
+        let wallet = Object.assign({}, this.state.wallet);
+        
+        this.setState({
+          wallet: {
+            address: response.data.address,
+            NEO: response.data.NEO,
+            GAS: response.data.GAS,
+            unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b),
+            unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b),
+          }
+        });
+      })
+  }
+
   populateAddress() {
     axios.get('/gas2')
       .then(response => {
@@ -28,23 +45,24 @@ class App extends Component {
             address: response.data.address,
             NEO: response.data.NEO,
             GAS: response.data.GAS,
-            unspentGas: response.data.GAS.unspent,
-            unspentNEO: response.data.NEO.unspent,
+            unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b),
+            unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b),
           }
         });
       })
   }
 
   componentDidMount() {
-    this.populateAddress();
+    // this.populateAddress();
   }
 
   render() {
     return (
     <Container>
       <div>
-        <h3>Neo to Gas baby</h3>
-        <Wallet wallet={this.state.wallet} />
+      <Input type="text" onChange={(e, data) => this.setState({ address: data.value})} />
+      <Button onClick={() => this.handleAddressClick()}>See Details</Button>
+      <Wallet wallet={this.state.wallet} />        
       </div>
     </Container>
     );

@@ -36,6 +36,15 @@ router.get('/gas2', async (ctx, next) => {
       ctx.response.body = response.data;
     })
     .catch(err => ctx.response.body = err);
+});
+
+router.get('/v1/wallet/:wallet', async (ctx, next) => {
+  await axios
+    .get(`https://api.neonwallet.com/v2/address/balance/${ctx.params.wallet}`)
+    .then((response) => {
+      ctx.response.body = response.data;
+    })
+    .catch(err => ctx.response.body = err);
 })
 
 app.use(router.routes())
