@@ -21,9 +21,9 @@ app.use(morgan('dev'))
 
 app.use(publicFiles);
 
-router.get('/gas1', async (ctx, next) => {
+router.get('/v1/wallet_history/:wallet', async (ctx, next) => {
   await axios
-    .get(`https://neoscan.io/api/main_net/v1/get_address/${ADDRESS}`)
+    .get(`https://neoscan.io/api/main_net/v1/get_address/${ctx.params.wallet}`)
     .then((response) => {
       ctx.response.body = response.data;
     })

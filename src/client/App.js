@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
+import PriceWidget from './Components/PriceWidget.jsx';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      address: 'APd8oRCpwKDD8YbzuUJPg2h7VRwp6bWZUk',
       wallet: {
         address: '',
         NEO: '',
@@ -36,20 +38,20 @@ class App extends Component {
   }
 
   populateAddress() {
-    axios.get('/gas2')
-      .then(response => {
-        let wallet = Object.assign({}, this.state.wallet);
-        
-        this.setState({
-          wallet: {
-            address: response.data.address,
-            NEO: response.data.NEO,
-            GAS: response.data.GAS,
-            unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b),
-            unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b),
-          }
-        });
-      })
+    axios.get(`/v1/wallet/${this.state.address}`)
+    .then(response => {
+      let wallet = Object.assign({}, this.state.wallet);
+      
+      this.setState({
+        wallet: {
+          address: response.data.address,
+          NEO: response.data.NEO,
+          GAS: response.data.GAS,
+          unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b),
+          unspentNEO: response.data.NEO.unspent.length > 0 ? response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b) : null
+        }
+      });
+    })
   }
 
   getCurrentPrices() {
@@ -65,13 +67,25 @@ class App extends Component {
       .catch(error => console.log(`caught ${error} trying to get current usd value`));
   }
 
+  buildTenWidgets() {
+    let counter = 0;
+    let result = [];
+    while (counter < 10) {
+      result.push(<PriceWidget neoPrice={this.state.neo_usd} gasPrice={this.state.gas_usd} />)
+      counter++;
+    }
+    return result;
+  }
+
   componentDidMount() {
     this.getCurrentPrices();
+    this.populateAddress();
   }
 
   render() {
     return (
       <div>
+      <PriceWidget neoPrice={this.state.neo_usd} gasPrice={this.state.gas_usd} />
     <Container>
       <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />        
     </Container>

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Icon, Header, Table } from 'semantic-ui-react';
+import { Container, Icon, Header, Table, Image } from 'semantic-ui-react';
 
 const Wallet = ({wallet, gasPrice, neoPrice}) => (
 
   <Container textAlign={'center'}>
   <Header as='h2' icon>
-    <Icon name='heartbeat' />
+    <Image  src='/assets/neo-logo.ico' />
       NEO Address
       <Header.Subheader>
         { wallet.address }
