@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { store } from './store/store'
 import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 import PriceWidget from './Components/PriceWidget.jsx';
+
 
 class App extends Component {
   constructor() {
@@ -85,7 +87,9 @@ class App extends Component {
   render() {
     return (
       <div>
+
       <PriceWidget neoPrice={this.state.neo_usd} gasPrice={this.state.gas_usd} />
+
     <Container>
       <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />        
     </Container>
