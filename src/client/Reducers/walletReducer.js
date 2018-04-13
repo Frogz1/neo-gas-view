@@ -12,7 +12,7 @@ const initialState = {
 
 export function wallet(state = initialState , action) {
   switch (action.type) {
-    case 'SET_WALLET_DETAILS':
+    case 'SET_WALLET':
       return Object.assign({}, state, {
         wallet: action.wallet
       })
