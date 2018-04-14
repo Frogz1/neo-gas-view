@@ -59,7 +59,6 @@ class App extends Component {
   getCurrentPrices() {
     axios.get('/v1/current_price')
       .then((response) => {
-        const trevor = Number(le)
         let neo_usd = response.data['neo'];
         let gas_usd = response.data['gas'];
         this.setState({
