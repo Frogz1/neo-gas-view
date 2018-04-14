@@ -5,6 +5,7 @@ import { store } from './store/store'
 import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 import PriceWidget from './Components/PriceWidget.jsx';
+import { letProto } from 'rxjs/operator/let';
 
 
 class App extends Component {
@@ -55,10 +56,10 @@ class App extends Component {
       });
     })
   }
-
   getCurrentPrices() {
     axios.get('/v1/current_price')
       .then((response) => {
+        const trevor = Number(le)
         let neo_usd = response.data['neo'];
         let gas_usd = response.data['gas'];
         this.setState({

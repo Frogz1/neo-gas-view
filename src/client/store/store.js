@@ -17,3 +17,5 @@ store.dispatch(loadWallet(store.getState().address));
 // store.dispatch('LOAD_WALLET_SUCCESS')
 
 unsubscribe();
+
+export { store };
