@@ -19,38 +19,4 @@ const getWalletStats = async (address, callback) => {
   )       
 };
 
-const setWallet = ({ wallet }) => {
-  return {
-    type: 'SET_WALLET',
-    wallet
-  }
-}
-
-
-function loadWallet(address) {
-  return (dispatch) => {
-    getWalletStats(address, (wallet) => {
-      dispatch(setWallet({ wallet: wallet}))
-    })
-  }
-};
-
-
-
-const setPrices = ({ neo_usd, gas_usd }) => {
-  return {
-    type: 'SET_PRICES',
-   neo_usd,
-   gas_usd,
-  }
-}
-
-function loadPrices() {
-  return (dispatch) => {
-    getCurrentPrice((data) => {
-      dispatch(setPrices(data));
-    });
-  };
-};
-
-export { loadWallet, loadPrices };
+export default getWalletStats;
