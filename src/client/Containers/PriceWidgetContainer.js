@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PriceWidget from './../components/PriceWidget';
+import PriceWidget from '../Components/PriceWidget.jsx'
 import loadPrices from '../actions/priceAction.js';
 
 const mapStateToProps = ({ currentPrice }) => {
   return {
     neoUsd: currentPrice.neoUsd,
-    gasUSd: currentPrice.gasUSd
+    gasUsd: currentPrice.gasUsd
   };
 };
 
