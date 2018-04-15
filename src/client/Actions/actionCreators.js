@@ -53,4 +53,4 @@ function loadPrices() {
   };
 };
 
-export { loadWallet, loadPrices };
+export { loadWallet };

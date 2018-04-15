@@ -1,18 +1,24 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { wallet } from '../Reducers/walletReducer'
+import { combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { currentPrice } from '../Reducers/priceReducer';
+import {wallet}  from '../Reducers/walletReducer'
 import { loadWallet } from '../Actions/actionCreators';
+import { loadPrices } from '../Actions/priceAction';
 
+var combined = combineReducers({wallet, currentPrice});
 const store = createStore(
-  wallet, composeWithDevTools(applyMiddleware(thunk))); 
+  combined, composeWithDevTools(applyMiddleware(thunk))); 
 
 
 
   const unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 )
-store.dispatch(loadWallet(store.getState().address));
+store.dispatch(loadWallet(store.getState().wallet.address));
+store.dispatch(loadPrices())
+console.log(store.getState());
 
 // store.dispatch('LOAD_WALLET_SUCCESS')
 

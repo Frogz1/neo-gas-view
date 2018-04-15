@@ -1,7 +1,18 @@
-const getPriceUSD = (neoUsd, gasUsd) => ({
-  type: 'GET_PRICE',
-  neoUsd,
-  gasUsd
+import { getCurrentPrice } from '../lib/getCurrentPrice';
+
+const setPriceUSD = (prices) => ({
+  type: 'SET_PRICE',
+  prices
 });
 
-export default getPriceUSD;
+
+
+export function loadPrices() {
+  return (dispatch) => {
+    getCurrentPrice((prices) => {
+      console.log(prices)
+      dispatch(setPriceUSD(prices));
+    });
+  };
+};
+
