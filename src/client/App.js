@@ -5,7 +5,7 @@ import { store } from './store/store'
 import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 import PriceWidget from './Components/PriceWidget.jsx';
-import { letProto } from 'rxjs/operator/let';
+import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 
 
 class App extends Component {
@@ -88,7 +88,7 @@ class App extends Component {
     return (
       <div>
 
-      <PriceWidget neoPrice={this.state.neo_usd} gasPrice={this.state.gas_usd} />
+      <PriceWidgetContainer neoPrice={this.state.neo_usd} gasPrice={this.state.gas_usd} />
 
     <Container>
       <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />        
@@ -102,4 +102,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('app'));
