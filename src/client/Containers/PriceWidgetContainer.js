@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PriceWidget from '../Components/PriceWidget.jsx'
-import loadPrices from '../actions/priceAction.js';
+import loadPrices from '../Actions/priceAction.js';
 
 const mapStateToProps = ({ currentPrice }) => {
   return {
