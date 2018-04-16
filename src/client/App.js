@@ -37,23 +37,22 @@ class App extends Component {
   render() {
     return (
       <div>
-
       <PriceWidgetContainer />
-      <WalletContainer />
-
-    <Container>
-      {/* <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />         */}
-    </Container>
-    <Container textAlign={'center'}>
-      <Input style={{width: '315px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
+        <Container>
+          <WalletContainer />
+        </Container>
+      <Container textAlign={'center'}>
+        <Input style={{width: '315px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
       {/* <Input size='medium' type="text" fluid value={store.getState().wallet.newAddress} onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})}/> */}
-      <Button  size='medium' onClick={() => {
-        store.dispatch(loadWallet(this.state.newAddress));
-        this.setState({
-          newAddress: ''
-        })
-        }}>See Details</Button>
-    </Container>
+        <Button  size='medium' onClick={() => {
+          store.dispatch(loadWallet(this.state.newAddress));
+          this.setState({
+            newAddress: ''
+          })
+        }}>
+          See Details
+        </Button>
+     </Container>
     </div>
     );
   }
