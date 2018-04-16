@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Icon, Header, Table, Image } from 'semantic-ui-react';
 
-const Wallet = ({wallet, gasUsd, neoUsd}) => (
+const Wallet = ({wallet, gasPrice, neoPrice}) => (
 
   <Container textAlign={'center'}>
   <Header as='h2' icon>
@@ -24,12 +24,12 @@ const Wallet = ({wallet, gasUsd, neoUsd}) => (
         </Table.Header>
         <Table.Body>
           <Table.Row>
-           <Table.Cell>{ wallet.NEO }</Table.Cell>
+           <Table.Cell>{ wallet.NEO.balance }</Table.Cell>
            {/* <Table.Cell>{ neoPrice }</Table.Cell> */}
-           <Table.Cell>${ (wallet.NEO * neoUsd).toFixed(2) }</Table.Cell>
-           <Table.Cell>{ wallet.GAS }</Table.Cell>
+           <Table.Cell>${ (wallet.NEO.balance * neoPrice).toFixed(2) }</Table.Cell>
+           <Table.Cell>{ wallet.GAS.balance }</Table.Cell>
            {/* <Table.Cell>{ gasPrice }</Table.Cell> */}
-           <Table.Cell>${ (wallet.GAS * gasUsd).toFixed(2) }</Table.Cell>
+           <Table.Cell>${ (wallet.GAS.balance * gasPrice).toFixed(2) }</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

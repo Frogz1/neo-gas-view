@@ -3,8 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { currentPrice } from '../Reducers/priceReducer';
-import {wallet}  from '../Reducers/walletReducer'
-import { loadWallet } from '../Actions/actionCreators';
+import { wallet }  from '../Reducers/walletReducer'
+import { loadWallet } from '../Actions/walletAction';
 import { loadPrices } from '../Actions/priceAction';
 
 var combined = combineReducers({wallet, currentPrice});
