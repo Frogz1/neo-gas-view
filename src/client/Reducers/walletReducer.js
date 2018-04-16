@@ -17,9 +17,9 @@ export function wallet(state = initialState , action) {
         unspentGas: action.wallet.unspentGas,
         unspentNEO: action.wallet.unspentNEO
       })
-    case 'LOAD_WALLET_REQUEST':
+    case 'SET_WALLET_ADDRESS':
      return Object.assign({}, state, {
-       address: action.address
+       address: action.wallet
       })
     default:
       return state;

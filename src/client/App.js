@@ -8,6 +8,7 @@ import Wallet from './Components/Wallet.jsx';
 import PriceWidget from './Components/PriceWidget.jsx';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
+import { loadWallet } from './Actions/walletAction';
 
 
 class App extends Component {
@@ -42,8 +43,9 @@ class App extends Component {
       {/* <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />         */}
     </Container>
     <Container textAlign={'center'}>
-      <Input size='medium' type="text" onChange={(e, data) => this.setState({ address: data.value})} />
-      <Button onClick={() => this.handleAddressClick()}>See Details</Button>
+      {/* <Input size='medium' type="text" onChange={(e, data) => this.setState({ address: data.value})} /> */}
+      <Input size='medium' type="text" onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})} />
+      <Button onClick={() => store.dispatch(loadWallet(store.getState().wallet.address))}>See Details</Button>
     </Container>
     </div>
     );
