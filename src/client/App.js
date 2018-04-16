@@ -11,8 +11,10 @@ import WalletContainer from './Containers/WalletContainer';
 import { loadWallet } from './Actions/walletAction';
 
 
-class App extends Component {
-
+class App extends Component { 
+  state = {
+    newAddress: ''
+  }
 
   handleAddressClick() {
     axios.get(`/v1/wallet/${this.state.address}`)
@@ -43,9 +45,14 @@ class App extends Component {
       {/* <Wallet wallet={this.state.wallet} gasPrice={this.state.gas_usd} neoPrice={this.state.neo_usd} />         */}
     </Container>
     <Container textAlign={'center'}>
-      {/* <Input size='medium' type="text" onChange={(e, data) => this.setState({ address: data.value})} /> */}
-      <Input size='medium' type="text" onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})} />
-      <Button onClick={() => store.dispatch(loadWallet(store.getState().wallet.address))}>See Details</Button>
+      <Input style={{width: '315px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
+      {/* <Input size='medium' type="text" fluid value={store.getState().wallet.newAddress} onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})}/> */}
+      <Button  size='medium' onClick={() => {
+        store.dispatch(loadWallet(this.state.newAddress));
+        this.setState({
+          newAddress: ''
+        })
+        }}>See Details</Button>
     </Container>
     </div>
     );

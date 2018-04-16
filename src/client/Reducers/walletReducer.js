@@ -11,6 +11,7 @@ export function wallet(state = initialState , action) {
   switch (action.type) {
     case 'SET_WALLET':
       return Object.assign({}, state, {
+        newAddress: '',
         address: action.wallet.address,
         NEO: action.wallet.NEO,
         GAS: action.wallet.GAS,
@@ -19,7 +20,7 @@ export function wallet(state = initialState , action) {
       })
     case 'SET_WALLET_ADDRESS':
      return Object.assign({}, state, {
-       address: action.wallet
+       newAddress: action.wallet
       })
     default:
       return state;
