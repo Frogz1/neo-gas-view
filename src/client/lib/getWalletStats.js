@@ -6,17 +6,25 @@ const getWalletStats = async (address, callback) => {
     .then(response => {
       let wallet ={ 
           address: response.data.address,
-          NEO: response.data.NEO,
-          GAS: response.data.GAS,
-          unspentGas: response.data.GAS.unspent.length ? response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b) : 0,
-          unspentNEO: response.data.NEO.unspent.length ? response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b) : 0,
+          NEO: response.data.NEO.balance,
+          GAS: response.data.GAS.balance,
+          unspentGas: reduceUnspent(response.data.GAS.unspent),
+          unspentNEO: reduceUnspent(response.data.NEO.unspent),
         };
         callback(wallet);      
     })
     .catch(error => {
       console.log(error);
     }
-  )       
+  )
 };
 
-export default getWalletStats;
+const reduceUnspent = (unspent) => {
+return unspent.length
+  ? unspent
+    .map(a => a.value)
+    .reduce((a, b) => a + b)
+  : 0;  
+}
+
+export { getWalletStats };

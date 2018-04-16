@@ -1,4 +1,20 @@
 import React from 'react';
-import Wallet from './../components/Wallet';
 import { connect } from 'react-redux';
-import handleSearchChange from '../actions/search.js';
+import Wallet from '../Components/Wallet.jsx';
+import loadWallet from '../Actions/walletAction';
+
+const mapStateToProps = ({ wallet, currentPrice }) => {
+  return {
+    wallet,
+    gasUsd: currentPrice.gasUsd,
+    neoUsd: currentPrice.neoUsd
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLoadWallet: () => dispatch(loadWallet())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
