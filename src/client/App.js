@@ -9,13 +9,14 @@ import PriceWidget from './Components/PriceWidget.jsx';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
 import { loadWallet } from './Actions/walletAction';
+import { setSeconds } from 'date-fns';
 
 
 class App extends Component { 
   state = {
-    newAddress: ''
+    newAddress: '',
   }
-
+  
   handleAddressClick() {
     axios.get(`/v1/wallet/${this.state.address}`)
       .then(response => {
@@ -32,7 +33,6 @@ class App extends Component {
         });
       })
   }
-
 
   render() {
     return (

@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PriceWidget from '../Components/PriceWidget.jsx'
-import loadPrices from '../Actions/priceAction.js';
+import { loadPrices, loadBlockRate } from '../Actions/priceAction.js';
 
 const mapStateToProps = ({ currentPrice }) => {
   return {
     neoUsd: currentPrice.neoUsd,
-    gasUsd: currentPrice.gasUsd
+    gasUsd: currentPrice.gasUsd,
+    blockRate: currentPrice.blockRate
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleLoadPrices: () => dispatch(loadPrices())
+    handleLoadPrices: () => dispatch(loadPrices()),
+    handleLoadBlockRate: () => dispatch(loadBlockRate())
   };
 };
 

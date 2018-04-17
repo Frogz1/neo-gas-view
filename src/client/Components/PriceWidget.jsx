@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Item, Container } from 'semantic-ui-react';
 
-const PriceWidget = ({neoUsd, gasUsd}) => (
+const PriceWidget = ({neoUsd, gasUsd, blockRate}) => (
   <Container style={{marginTop: '50px'}}>
   <Item.Group>
     <Item>
@@ -12,7 +12,7 @@ const PriceWidget = ({neoUsd, gasUsd}) => (
         <Item.Header as='a'>GAS</Item.Header>
         <Item.Meta>${ gasUsd }</Item.Meta>
         <Item.Header>Avg Block Gen</Item.Header>
-        <Item.Meta>20.8 / s</Item.Meta>
+        <Item.Meta>{ blockRate } sec</Item.Meta>
       </Item.Content>
     </Item>
   </Item.Group>    
