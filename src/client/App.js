@@ -41,8 +41,8 @@ class App extends Component {
         <Container>
           <WalletContainer />
         </Container>
-      <Container textAlign={'center'}>
-        <Input style={{width: '315px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
+      <Container style={{margin: '10px'}} textAlign={'center'}>
+        <Input style={{width: '315px', marginRight: '5px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
       {/* <Input size='medium' type="text" fluid value={store.getState().wallet.newAddress} onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})}/> */}
         <Button  size='medium' onClick={() => {
           store.dispatch(loadWallet(this.state.newAddress));
@@ -50,7 +50,7 @@ class App extends Component {
             newAddress: ''
           })
         }}>
-          See Details
+          Check Address
         </Button>
      </Container>
     </div>

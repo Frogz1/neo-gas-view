@@ -5,7 +5,7 @@ const PriceWidget = ({neoUsd, gasUsd}) => (
   <Container style={{marginTop: '50px'}}>
   <Item.Group>
     <Item>
-      <Item.Image size='small' src='/assets/neo-logo.ico' />
+      <Item.Image size='tiny' src='/assets/neo-logo.ico' />
       <Item.Content>
         <Item.Header as='a'>NEO</Item.Header>
         <Item.Meta>${ neoUsd }</Item.Meta>
