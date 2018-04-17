@@ -3,7 +3,7 @@ import axios from 'axios';
 const getBlockRate = (callback) => {
 
   axios
-  .get(`/v1/blocks/get_last`)
+  .get(`/v1/blocks/get_last_blockrate`)
   .then(({ data }) => {
     let blockRate = data.last_twenty_block_avg;
     callback(blockRate)      
