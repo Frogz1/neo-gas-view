@@ -15,6 +15,7 @@ export function wallet(state = initialState , action) {
         address: action.wallet.address,
         NEO: action.wallet.NEO,
         GAS: action.wallet.GAS,
+        unclaimedGas: action.wallet.unclaimedGas,
         unspentGas: action.wallet.unspentGas,
         unspentNEO: action.wallet.unspentNEO
       })

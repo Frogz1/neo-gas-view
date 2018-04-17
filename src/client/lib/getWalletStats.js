@@ -8,6 +8,7 @@ const getWalletStats = async (address, callback) => {
           address: response.data.address,
           NEO: response.data.NEO.balance,
           GAS: response.data.GAS.balance,
+          unclaimedGas: response.data.unclaimedGas,
           unspentGas: reduceUnspent(response.data.GAS.unspent),
           unspentNEO: reduceUnspent(response.data.NEO.unspent),
         };

@@ -18,6 +18,8 @@ const Wallet = ({wallet, gasUsd, neoUsd}) => (
            {/* <Table.HeaderCell>USD Value</Table.HeaderCell> */}
            <Table.HeaderCell>Wallet Value</Table.HeaderCell>
            <Table.HeaderCell>GAS</Table.HeaderCell>
+           <Table.HeaderCell>Unclaimed GAS</Table.HeaderCell>
+           <Table.HeaderCell>Total GAS</Table.HeaderCell>
            {/* <Table.HeaderCell>USD Value</Table.HeaderCell> */}
            <Table.HeaderCell>GAS Value</Table.HeaderCell>
           </Table.Row>
@@ -28,8 +30,9 @@ const Wallet = ({wallet, gasUsd, neoUsd}) => (
            {/* <Table.Cell>{ neoPrice }</Table.Cell> */}
            <Table.Cell>${ (wallet.NEO * neoUsd).toFixed(2) }</Table.Cell>
            <Table.Cell>{ wallet.GAS }</Table.Cell>
-           {/* <Table.Cell>{ gasPrice }</Table.Cell> */}
-           <Table.Cell>${ (wallet.GAS * gasUsd).toFixed(2) }</Table.Cell>
+           <Table.Cell>{ wallet.unclaimedGas }</Table.Cell>
+           <Table.Cell>{ wallet.GAS + wallet.unclaimedGas }</Table.Cell>
+           <Table.Cell>${ ((wallet.GAS + wallet.unclaimedGas ) * gasUsd).toFixed(2) }</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>

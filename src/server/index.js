@@ -42,10 +42,17 @@ router.get('/gas2', async (ctx, next) => {
 });
 //Get Current wallet details, gas / neo count for wallet
 router.get('/v1/wallet/:wallet', async (ctx, next) => {
+
   await axios
     .get(`https://api.neonwallet.com/v2/address/balance/${ctx.params.wallet}`)
-    .then((response) => {
-      ctx.response.body = response.data;
+    .then(async (response) => {
+      let wallet = response.data;
+      await axios.get(`http://api.neonwallet.com/v2/address/claims/${ctx.params.wallet}`)
+        .then(({ data }) => {
+          wallet.unclaimedGas = Number(data.total_unspent_claim) / 100000000
+          ctx.response.body = wallet;
+        })
+        .catch(err => ctx.response.body = err)
     })
     .catch(err => ctx.response.body = err);
 });
