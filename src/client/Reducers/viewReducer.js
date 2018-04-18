@@ -2,7 +2,7 @@ const initialState = {
   view: 'welcome',
 };
 
-const viewReducer = (state = initialState, action) => {
+export function view(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_VIEW':
       return Object.assign({}, state, {
@@ -10,6 +10,6 @@ const viewReducer = (state = initialState, action) => {
       });
     default: return state;
   }
-};
+}
 
-export default viewReducer;
+export default view;

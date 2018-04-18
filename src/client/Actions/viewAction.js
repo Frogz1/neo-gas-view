@@ -1,5 +1,5 @@
 const setView = view => ({
-  action: 'CHANGE_VIEW',
+  type: 'CHANGE_VIEW',
   view,
 });
 

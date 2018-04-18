@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Input, Menu, Segment, Item, Container } from 'semantic-ui-react';
 
-const MenuBar = ({ neoUsd, gasUsd, blockRate }) => (
+const MenuBar = ({ neoUsd, gasUsd, blockRate, setView }) => (
   <Menu style={{ textAlign: 'center' }}>
     <Container>
-      <Menu.Item name="wallet" as="a" />
-      <Menu.Item name="calculator" as="a" />
+      <Menu.Item name="wallet" as="a" onClick={() => setView('wallet')} />
+      <Menu.Item name="calculator" as="a" onClick={() => setView('calculator')} />
       <Menu.Item>
         <Input icon="search" placeholder="Enter Address..." />
       </Menu.Item>

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import viewAction from '../Actions/viewAction';
 import MenuBar from '../Components/MenuBar';
 
 const mapStateToProps = ({ currentPrice }) => {
@@ -9,4 +10,8 @@ const mapStateToProps = ({ currentPrice }) => {
   };
 };
 
-export default connect(mapStateToProps)(MenuBar);
+const mapDispatchToProps = dispatch => ({
+  setView: type => dispatch(viewAction(type)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);

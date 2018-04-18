@@ -9,15 +9,15 @@ const handleChangeView = (view) => {
     case 'wallet':
       return <WalletContainer />;
     default:
-      return <Welcome clicker={this.handleClickChangeView} />;
+      return <Welcome />;
   }
 };
 
 
-const PrimaryContent = props => (
+const PrimaryContent = ({ view }) => (
   <div>
     {
-      handleChangeView(props.view)
+      handleChangeView(view)
     }
   </div>
 );

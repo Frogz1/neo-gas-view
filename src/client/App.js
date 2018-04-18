@@ -12,6 +12,7 @@ import Welcome from './Components/Welcome';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
 import MenuBarContainer from './Containers/MenuBarContainer';
+import PrimaryContentContainer from './Containers/PrimaryContentContainer';
 import { loadWallet } from './Actions/walletAction';
 
 class App extends Component {
@@ -64,9 +65,8 @@ class App extends Component {
     return (
       <div>
         <MenuBarContainer />
-        {
-          this.handleChangeView()
-        }
+        <PrimaryContentContainer />
+
         {/* <PriceWidgetContainer /> */}
         {/* <GasWidget /> */}
         <Container>
