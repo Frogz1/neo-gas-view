@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-import { Container, Input, Button } from 'semantic-ui-react';
+import { Container, Input, Button, Sidebar, Menu, Icon, Segment } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
 import GasWidget from './Components/GasWidget.jsx'
 import PriceWidget from './Components/PriceWidget.jsx';
+import MenuBar from './Components/MenuBar.jsx';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
 import { loadWallet } from './Actions/walletAction';
@@ -37,7 +38,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div>      
+      <MenuBar />
+
       <PriceWidgetContainer />
       <GasWidget />
         <Container>
@@ -45,7 +48,7 @@ class App extends Component {
         </Container>
       <Container style={{margin: '10px'}} textAlign={'center'}>
         <Input style={{width: '315px', marginRight: '5px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
-      {/* <Input size='medium' type="text" fluid value={store.getState().wallet.newAddress} onChange={(e, data) => store.dispatch({type: 'SET_WALLET_ADDRESS',wallet: data.value})}/> */}
+
         <Button  size='medium' onClick={() => {
           store.dispatch(loadWallet(this.state.newAddress));
           this.setState({

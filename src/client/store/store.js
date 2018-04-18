@@ -1,6 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { currentPrice } from '../Reducers/priceReducer';
 import { wallet } from '../Reducers/walletReducer';
@@ -16,7 +15,7 @@ const unsubscribe = store.subscribe(() =>
 store.dispatch(loadWallet(store.getState().wallet.address));
 store.dispatch(loadPrices());
 store.dispatch(loadBlockRate());
-console.log(store.getState());
+
 
 // store.dispatch('LOAD_WALLET_SUCCESS')
 
