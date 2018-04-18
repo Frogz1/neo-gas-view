@@ -1,67 +1,83 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import { Provider } from 'react-redux'
-import { store } from './store/store'
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import { Container, Input, Button, Sidebar, Menu, Icon, Segment } from 'semantic-ui-react';
-import Wallet from './Components/Wallet.jsx';
-import GasWidget from './Components/GasWidget.jsx'
-import PriceWidget from './Components/PriceWidget.jsx';
-import MenuBar from './Components/MenuBar.jsx';
-import Welcome from './Components/Welcome.jsx';
+import Wallet from './Components/Wallet';
+import GasWidget from './Components/GasWidget';
+import PriceWidget from './Components/PriceWidget';
+import MenuBar from './Components/MenuBar';
+import Welcome from './Components/Welcome';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
 import MenuBarContainer from './Containers/MenuBarContainer';
 import { loadWallet } from './Actions/walletAction';
-import { setSeconds } from 'date-fns';
 
-
-class App extends Component { 
-  state = {
-    newAddress: '',
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newAddress: '',
+      display: 'welcome',
+    };
   }
-  
+
   handleAddressClick() {
     axios.get(`/v1/wallet/${this.state.address}`)
-      .then(response => {
-        let wallet = Object.assign({}, this.state.wallet);
-        
+      .then((response) => {
+        const wallet = Object.assign({}, this.state.wallet);
+
         this.setState({
           wallet: {
             address: response.data.address,
             NEO: response.data.NEO,
             GAS: response.data.GAS,
-            unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a,b) => a + b),
-            unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a,b) => a + b),
-          }
+            unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a, b) => a + b),
+            unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a, b) => a + b),
+          },
         });
-      })
+      });
+  }
+
+  handleChangeView() {
+    switch (this.state.display) {
+      case 'calculator':
+        return <Welcome />;
+      case 'wallet':
+        return <WalletContainer />;
+      default:
+        return <Welcome />;
+    }
   }
 
   render() {
     return (
-      <div>      
-      <MenuBarContainer />
-
-      {/* <PriceWidgetContainer /> */}
-      {/* <GasWidget /> */}
+      <div>
+        <MenuBarContainer />
+        <Welcome />
+        {/* <PriceWidgetContainer /> */}
+        {/* <GasWidget /> */}
         <Container>
           <WalletContainer />
         </Container>
-      <Container style={{margin: '10px'}} textAlign={'center'}>
-        <Input style={{width: '315px', marginRight: '5px'}} size='small' type="text" children={<input value={this.state.newAddress} />}  onChange={(e, data) => this.setState({ newAddress: data.value})} />
+        <Container style={{ margin: '10px' }} textAlign="center">
+          <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} />
 
-        <Button  size='medium' onClick={() => {
+          <Button
+            size="medium"
+            onClick={() => {
           store.dispatch(loadWallet(this.state.newAddress));
           this.setState({
-            newAddress: ''
-          })
-        }}>
+            newAddress: '',
+          });
+        }}
+          >
           Check Address
-        </Button>
-     <footer>Donations welcome :)</footer>
-     </Container>
-    </div>
+          </Button>
+          <footer>Donations welcome :)</footer>
+        </Container>
+      </div>
     );
   }
 }
