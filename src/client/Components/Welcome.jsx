@@ -22,7 +22,7 @@ const Welcome = props => (
       </Header.Subheader>
     </Header>
     <div>
-      <Button color="green">Wallet</Button>
+      <Button onClick={(e, data) => props.clicker(e, data)} color="green">Wallet</Button>
       <Button color="green">Calculator</Button>
     </div>
     {/* <Card centered>

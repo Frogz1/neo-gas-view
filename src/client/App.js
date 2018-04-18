@@ -21,6 +21,7 @@ class App extends Component {
       newAddress: '',
       display: 'welcome',
     };
+    this.handleClickChangeView = this.handleClickChangeView.bind(this);
   }
 
   handleAddressClick() {
@@ -40,6 +41,14 @@ class App extends Component {
       });
   }
 
+  handleClickChangeView(e, data) {
+    console.log(e);
+    console.log(data);
+    this.setState({
+      display: data.children.toLowerCase()
+    })
+  }
+
   handleChangeView() {
     switch (this.state.display) {
       case 'calculator':
@@ -47,7 +56,7 @@ class App extends Component {
       case 'wallet':
         return <WalletContainer />;
       default:
-        return <Welcome />;
+        return <Welcome clicker={this.handleClickChangeView} />;
     }
   }
 
@@ -55,11 +64,14 @@ class App extends Component {
     return (
       <div>
         <MenuBarContainer />
-        <Welcome />
+
+        {
+          this.handleChangeView()
+        }
         {/* <PriceWidgetContainer /> */}
         {/* <GasWidget /> */}
         <Container>
-          <WalletContainer />
+          {/* <WalletContainer /> */}
         </Container>
         <Container style={{ margin: '10px' }} textAlign="center">
           <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} />
