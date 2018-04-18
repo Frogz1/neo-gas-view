@@ -8,8 +8,10 @@ import Wallet from './Components/Wallet.jsx';
 import GasWidget from './Components/GasWidget.jsx'
 import PriceWidget from './Components/PriceWidget.jsx';
 import MenuBar from './Components/MenuBar.jsx';
+import Welcome from './Components/Welcome.jsx';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
+import MenuBarContainer from './Containers/MenuBarContainer';
 import { loadWallet } from './Actions/walletAction';
 import { setSeconds } from 'date-fns';
 
@@ -39,10 +41,10 @@ class App extends Component {
   render() {
     return (
       <div>      
-      <MenuBar />
+      <MenuBarContainer />
 
-      <PriceWidgetContainer />
-      <GasWidget />
+      {/* <PriceWidgetContainer /> */}
+      {/* <GasWidget /> */}
         <Container>
           <WalletContainer />
         </Container>
@@ -57,6 +59,7 @@ class App extends Component {
         }}>
           Check Address
         </Button>
+     <footer>Donations welcome :)</footer>
      </Container>
     </div>
     );
