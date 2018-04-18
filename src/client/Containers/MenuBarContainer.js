@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MenuBar from '../Components/MenuBar.jsx';
+import MenuBar from '../Components/MenuBar';
 
 const mapStateToProps = ({ currentPrice }) => {
   return {
