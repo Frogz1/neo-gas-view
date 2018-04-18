@@ -102,7 +102,7 @@ const getAverageTime = (blocks) => {
 
 app.use(router.routes())
 
-setInterval(() => updateBlockRate.updateBlockRate(), 30000)
+// setInterval(() => updateBlockRate.updateBlockRate(), 300000)
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 

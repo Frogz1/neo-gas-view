@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { store } from './store/store'
 import { Container, Input, Button } from 'semantic-ui-react';
 import Wallet from './Components/Wallet.jsx';
+import GasWidget from './Components/GasWidget.jsx'
 import PriceWidget from './Components/PriceWidget.jsx';
 import PriceWidgetContainer from './Containers/PriceWidgetContainer';
 import WalletContainer from './Containers/WalletContainer';
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <div>
       <PriceWidgetContainer />
+      <GasWidget />
         <Container>
           <WalletContainer />
         </Container>
