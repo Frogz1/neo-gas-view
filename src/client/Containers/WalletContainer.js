@@ -7,7 +7,7 @@ const mapStateToProps = ({ wallet, currentPrice }) => {
   return {
     wallet,
     gasUsd: currentPrice.gasUsd,
-    neoUsd: currentPrice.neoUsd
+    neoUsd: currentPrice.neoUsd,
   }
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Item } from 'semantic-ui-react';
+import { Container, Item, } from 'semantic-ui-react';
 
 const GasWidget = (props) => (
   <Item.Group style={{float: 'right'}}>

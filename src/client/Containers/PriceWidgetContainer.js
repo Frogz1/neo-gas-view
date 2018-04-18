@@ -7,7 +7,7 @@ const mapStateToProps = ({ currentPrice }) => {
   return {
     neoUsd: currentPrice.neoUsd,
     gasUsd: currentPrice.gasUsd,
-    blockRate: currentPrice.blockRate
+    blockRate: currentPrice.blockRate,
   };
 };
 

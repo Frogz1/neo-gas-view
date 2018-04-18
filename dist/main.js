@@ -14926,7 +14926,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.currentPrice = currentPrice;\nfunction currentPrice() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { neoUsd: 0, gasUsd: 0 };\n  var action = arguments[1];\n\n  switch (action.type) {\n    case 'SET_PRICE':\n      return Object.assign({}, state, {\n        neoUsd: action.prices.neoUsd,\n        gasUsd: action.prices.gasUsd\n      });\n    case 'SET_BLOCK_RATE':\n      return Object.assign({}, state, {\n        blockRate: action.blockRate\n      });\n    default:\n      return state;\n  };\n};\n\n//# sourceURL=webpack:///./src/client/Reducers/priceReducer.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.currentPrice = currentPrice;\nfunction currentPrice() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { neoUsd: 0, gasUsd: 0 };\n  var action = arguments[1];\n\n  switch (action.type) {\n    case 'SET_PRICE':\n      return Object.assign({}, state, {\n        neoUsd: action.prices.neoUsd,\n        gasUsd: action.prices.gasUsd\n      });\n    case 'SET_BLOCK_RATE':\n      return Object.assign({}, state, {\n        blockRate: action.blockRate\n      });\n    default:\n      return state;\n  }\n}\n\n//# sourceURL=webpack:///./src/client/Reducers/priceReducer.js?");
 
 /***/ }),
 
