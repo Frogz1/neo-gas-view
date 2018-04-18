@@ -45,7 +45,7 @@ class App extends Component {
     console.log(e);
     console.log(data);
     this.setState({
-      display: data.children.toLowerCase()
+      display: data.children.toLowerCase(),
     })
   }
 
@@ -64,7 +64,6 @@ class App extends Component {
     return (
       <div>
         <MenuBarContainer />
-
         {
           this.handleChangeView()
         }

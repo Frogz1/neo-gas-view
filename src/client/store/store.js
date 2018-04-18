@@ -3,10 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { currentPrice } from '../Reducers/priceReducer';
 import { wallet } from '../Reducers/walletReducer';
+import { viewReducer } from '../Reducers/displayReducer';
 import { loadWallet } from '../Actions/walletAction';
 import { loadPrices, loadBlockRate } from '../Actions/priceAction';
 
-const combined = combineReducers({ wallet, currentPrice });
+const combined = combineReducers({ wallet, currentPrice, viewReducer });
 const store = createStore(combined, composeWithDevTools(applyMiddleware(thunk)));
 
 
