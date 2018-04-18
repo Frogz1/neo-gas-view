@@ -50,31 +50,13 @@ class App extends Component {
     })
   }
 
-  handleChangeView() {
-    switch (this.state.display) {
-      case 'calculator':
-        return <Welcome />;
-      case 'wallet':
-        return <WalletContainer />;
-      default:
-        return <Welcome clicker={this.handleClickChangeView} />;
-    }
-  }
-
   render() {
     return (
       <div>
         <MenuBarContainer />
         <PrimaryContentContainer />
-
-        {/* <PriceWidgetContainer /> */}
-        {/* <GasWidget /> */}
-        <Container>
-          {/* <WalletContainer /> */}
-        </Container>
         <Container style={{ margin: '10px' }} textAlign="center">
           <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} />
-
           <Button
             size="medium"
             onClick={() => {

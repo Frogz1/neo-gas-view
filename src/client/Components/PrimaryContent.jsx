@@ -1,15 +1,15 @@
 import React from 'react';
 import WalletContainer from '../Containers/WalletContainer';
-import Welcome from './Welcome';
+import WelcomeContainer from '../Containers/WelcomeContainer';
 
 const handleChangeView = (view) => {
   switch (view) {
     case 'calculator':
-      return <Welcome />;
+      return <WelcomeContainer />;
     case 'wallet':
       return <WalletContainer />;
     default:
-      return <Welcome />;
+      return <WelcomeContainer />;
   }
 };
 

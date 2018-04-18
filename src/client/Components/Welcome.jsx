@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Card, Header, Icon, Button, Image } from 'semantic-ui-react';
 
-const Welcome = props => (
+const Welcome = ({ setView }) => (
   <Container textAlign="center">
     {/* <Card centered>
       <Icon as="i" name="calculator" size="massive" fitted />
@@ -14,7 +14,7 @@ const Welcome = props => (
         </Card.Meta>
       </Card.Content>
     </Card> */}
-    <Header  as="h2" icon>
+    <Header as="h2" icon>
       <Image src="/assets/neo-logo.ico" />
       Welcome!
       <Header.Subheader>
@@ -22,8 +22,8 @@ const Welcome = props => (
       </Header.Subheader>
     </Header>
     <div>
-      <Button onClick={(e, data) => props.clicker(e, data)} color="green">Wallet</Button>
-      <Button color="green">Calculator</Button>
+      <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
+      <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
     </div>
     {/* <Card centered>
       <Image src="/assets/neo_raw.png" />
