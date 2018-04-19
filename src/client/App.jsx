@@ -4,25 +4,17 @@ import axios from 'axios';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { Container, Input, Button, Sidebar, Menu, Icon, Segment } from 'semantic-ui-react';
-import Wallet from './Components/Wallet';
-import GasWidget from './Components/GasWidget';
-import PriceWidget from './Components/PriceWidget';
-import MenuBar from './Components/MenuBar';
-import Welcome from './Components/Welcome';
-import PriceWidgetContainer from './Containers/PriceWidgetContainer';
-import WalletContainer from './Containers/WalletContainer';
 import MenuBarContainer from './Containers/MenuBarContainer';
 import PrimaryContentContainer from './Containers/PrimaryContentContainer';
-import { loadWallet } from './Actions/walletAction';
+import { loadWallet, setWalletAddress  } from './Actions/walletAction';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newAddress: '',
-      display: 'welcome',
     };
-    this.handleClickChangeView = this.handleClickChangeView.bind(this);
+    // this.handleClickChangeView = this.handleClickChangeView.bind(this);
   }
 
   handleAddressClick() {
@@ -42,34 +34,27 @@ class App extends Component {
       });
   }
 
-  handleClickChangeView(e, data) {
-    console.log(e);
-    console.log(data);
-    this.setState({
-      display: data.children.toLowerCase(),
-    })
-  }
 
   render() {
     return (
       <div>
         <MenuBarContainer />
         <PrimaryContentContainer />
-        <Container style={{ margin: '10px' }} textAlign="center">
-          <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} />
+        {/* <Container style={{ margin: '10px' }} textAlign="center">
+          <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" value={store.getState().wallet.newAddress} onChange={(e, data) =>  {
+            console.log(data.value)
+            store.dispatch(setWalletAddress(data.value)) }} />
           <Button
             size="medium"
             onClick={() => {
-          store.dispatch(loadWallet(this.state.newAddress));
-          this.setState({
-            newAddress: '',
-          });
+          store.dispatch(loadWallet(store.getState().wallet.newAddress));
+         
         }}
           >
           Check Address
           </Button>
           <footer>Donations welcome :)</footer>
-        </Container>
+        </Container> */}
       </div>
     );
   }

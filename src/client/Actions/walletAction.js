@@ -6,18 +6,18 @@ const setWallet = ({ wallet }) => ({
 });
 
 
-const setWalletAddress = ({address}) => ({
-  type: 'SET_WALLET_ADDRESS',
-  address,
-})
+export function setWalletAddress(newAddress) {
+  return {
+    type: 'SET_WALLET_ADDRESS',
+    newAddress: newAddress,
+  };
+}
 
-
-function loadWallet(address) {
+export function loadWallet(address) {
   return (dispatch) => {
     getWalletStats(address, (wallet) => {
-      dispatch(setWallet({wallet}))
+      dispatch(setWallet({ wallet }));
     });
   };
 }
 
-export { loadWallet };

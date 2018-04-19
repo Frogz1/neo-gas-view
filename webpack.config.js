@@ -1,7 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/client/App.js'],
+  entry: ['babel-polyfill', './src/client/App.jsx'],
   module: {
     rules: [
       {

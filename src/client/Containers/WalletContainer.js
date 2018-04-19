@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Wallet from '../Components/Wallet';
-import loadWallet from '../Actions/walletAction';
+import { loadWallet, setWalletAddress  } from '../Actions/walletAction';
 
 const mapStateToProps = ({ wallet, currentPrice }) => ({
   wallet,
@@ -9,7 +9,8 @@ const mapStateToProps = ({ wallet, currentPrice }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleLoadWallet: () => dispatch(loadWallet()),
+  handleLoadWallet: address => dispatch(loadWallet(address)),
+  updateAddress: address => dispatch(setWalletAddress(address)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Header, Table, Image } from 'semantic-ui-react';
+import { Container, Header, Table, Image, Input, Button } from 'semantic-ui-react';
 
-const Wallet = ({ wallet, gasUsd, neoUsd }) => (
+const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) => (
 
   <Container textAlign="center">
     <Header as="h2" icon>
@@ -39,6 +39,22 @@ const Wallet = ({ wallet, gasUsd, neoUsd }) => (
         </Table.Row>
       </Table.Body>
     </Table>
+    <Container style={{ margin: '10px' }} textAlign="center">
+      {/* <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} /> */}
+      <Input
+        style={{ width: '315px', marginRight: '5px' }}
+        size="small"
+        type="text"
+        value={wallet.newAddress}
+        onChange={(e, data) => {
+          updateAddress(data.value)
+      }}
+      />
+      <Button size="medium" onClick={() => handleLoadWallet(wallet.newAddress)}>
+          Check Address
+      </Button>
+      <footer>Donations welcome :)</footer>
+    </Container>
   </Container>
 );
 
