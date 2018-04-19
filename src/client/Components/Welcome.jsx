@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Card, Header, Input, Button, Image } from 'semantic-ui-react';
 
-const Welcome = ({ setView }) => (
+const Welcome = ({ setView, wallet, updateAddress }) => (
   <Container textAlign="center">
     {/* <Card centered>
       <Icon as="i" name="calculator" size="massive" fitted />
@@ -23,11 +23,19 @@ const Welcome = ({ setView }) => (
     </Header>
 
 
-      <Input focus placeholder="Enter ADdress" />
-      <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
-      <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
-</Container>
-   
+    <Input
+        style={{ width: '315px', marginRight: '5px' }}
+        size="small"
+        type="text"
+        value={wallet.newAddress}
+        onChange={(e, data) => {
+          updateAddress(data.value);
+      }}
+      />
+    <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
+    <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
+    </Container>
+
 
 );
 
@@ -35,12 +43,12 @@ const Welcome = ({ setView }) => (
 export default Welcome;
 
 
-{/* /* <Item>
+{ /* /* <Item>
       <Item.Header>
       Welcome!
       </Item.Header>
       <Item.Meta>
         Input address or click calculator for Gas Stats
       </Item.Meta>
-    </Item> */}
-    
+    </Item> */ }
+
