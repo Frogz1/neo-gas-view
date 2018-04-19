@@ -6,7 +6,7 @@ const DAY = 86400;
 const REWARD = 0.00000007;
 
 
-const Calculator = ({ gasPrice, blockRate, neoCount }) => {
+const Calculator = ({ gasPrice, blockRate, neoCount = 100 }) => {
   const calculateGasEarnings = (neoCount = 1) => {
     const blocksPerDay = DAY / blockRate;
     const dailyReward = blocksPerDay * (REWARD * neoCount);
@@ -19,8 +19,8 @@ const Calculator = ({ gasPrice, blockRate, neoCount }) => {
   };
   const earnings = calculateGasEarnings(neoCount);
   return (
-    <Container textAlign="center">
-      <Statistic.Group >
+    <Container fluid>
+      <Statistic.Group>
         <Statistic>
           <Statistic.Value text>${(earnings.day * gasPrice).toFixed(2)}<br />GAS {earnings.day.toFixed(2)}</Statistic.Value>
           <Statistic.Label>Per Day</Statistic.Label>
