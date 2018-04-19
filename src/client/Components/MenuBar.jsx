@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Input, Menu, Segment, Item, Container } from 'semantic-ui-react';
+import React from 'react';
+import { Input, Menu, Item, Container } from 'semantic-ui-react';
 
 const MenuBar = ({ neoUsd, gasUsd, blockRate, setView }) => (
   <Menu style={{ textAlign: 'center' }} stackable>

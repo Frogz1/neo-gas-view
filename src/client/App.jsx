@@ -7,6 +7,7 @@ import { Container, Input, Button, Sidebar, Menu, Icon, Segment } from 'semantic
 import MenuBarContainer from './Containers/MenuBarContainer';
 import PrimaryContentContainer from './Containers/PrimaryContentContainer';
 import { loadWallet, setWalletAddress  } from './Actions/walletAction';
+import Calculator from './Components/Calculator';
 
 class App extends Component {
   constructor(props) {

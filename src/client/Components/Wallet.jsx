@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, Header, Table, Image, Input, Button } from 'semantic-ui-react';
+import Calculator from './Calculator';
 
 const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) => (
 
   <Container textAlign="center">
+    <Calculator gasPrice={gasUsd} blockRate={20} neoCount={wallet.NEO} />
     <Header as="h2" icon>
       <Image src="/assets/neo-logo.ico" />
       NEO Address
@@ -11,6 +13,8 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
         { wallet.address }
       </Header.Subheader>
     </Header>
+    <Container>
+    </Container>
     <Table celled>
       <Table.Header>
         <Table.Row>
