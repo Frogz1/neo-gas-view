@@ -7,6 +7,7 @@ const serve = require('koa-static');
 const morgan = require('koa-morgan')
 const moment = require('moment');
 const fs = require('fs');
+const updateBlockRate = require('./models/index');
 
 const PORT = process.env.PORT || 8080;
 const ADDRESS = process.env.ADDRESS;
@@ -77,7 +78,7 @@ router.get('/v1/current_price/', async (ctx, next) => {
 });
 
 //Get last 20 blocks
-router.get('/v1/blocks/get_last', async (ctx, next) => {
+router.get('/v1/blocks/get_last_blockrate', async (ctx, next) => {
   await axios
     .get('https://neoscan.io/api/main_net/v1/get_last_blocks')
     .then(({ data }) => {
@@ -101,7 +102,7 @@ const getAverageTime = (blocks) => {
 
 app.use(router.routes())
 
-
+// setInterval(() => updateBlockRate.updateBlockRate(), 300000)
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 

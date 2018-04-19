@@ -1,11 +1,23 @@
 import { getCurrentPrice } from '../lib/getCurrentPrice';
+import { getBlockRate } from '../lib/getBlockRate';
 
-const setPriceUSD = (prices) => ({
+const setPriceUSD = prices => ({
   type: 'SET_PRICE',
-  prices
+  prices,
 });
 
+const setBlockRate = blockRate => ({
+  type: 'SET_BLOCK_RATE',
+  blockRate,
+});
 
+export function loadBlockRate() {
+  return (dispatch) => {
+    getBlockRate((blockRate) => {
+      dispatch(setBlockRate(blockRate));
+    });
+  };
+}
 
 export function loadPrices() {
   return (dispatch) => {
@@ -14,5 +26,4 @@ export function loadPrices() {
       dispatch(setPriceUSD(prices));
     });
   };
-};
-
+}

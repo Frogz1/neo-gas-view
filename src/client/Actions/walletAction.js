@@ -1,28 +1,23 @@
-import axios from 'axios';
-import { getWalletStats } from '../lib/getWalletStats'
+import { getWalletStats } from '../lib/getWalletStats';
 
-const setWallet = ({ wallet }) => {
-  return {
-    type: 'SET_WALLET',
-    wallet
-  }
-}
+const setWallet = ({ wallet }) => ({
+  type: 'SET_WALLET',
+  wallet,
+});
 
-const setWalletAddress = ({address}) => {
+
+export function setWalletAddress(newAddress) {
   return {
     type: 'SET_WALLET_ADDRESS',
-    address
-  }
+    newAddress: newAddress,
+  };
 }
 
-
-function loadWallet(address) {
+export function loadWallet(address) {
   return (dispatch) => {
     getWalletStats(address, (wallet) => {
-      dispatch(setWallet({wallet}))
-    })
-  }
-};
+      dispatch(setWallet({ wallet }));
+    });
+  };
+}
 
-
-export { loadWallet };
