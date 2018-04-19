@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Menu, Segment, Item, Container } from 'semantic-ui-react';
 
 const MenuBar = ({ neoUsd, gasUsd, blockRate, setView }) => (
-  <Menu style={{ textAlign: 'center' }}>
+  <Menu style={{ textAlign: 'center' }} stackable>
     <Container>
       <Menu.Item name="wallet" as="a" onClick={() => setView('wallet')} />
       <Menu.Item name="calculator" as="a" onClick={() => setView('calculator')} />
