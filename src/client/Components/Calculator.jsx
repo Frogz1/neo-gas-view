@@ -26,15 +26,15 @@ const Calculator = ({ gasPrice, blockRate, neoCount = 100 }) => {
           <Statistic.Label>Per Day</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value text>${(earnings.week * gasPrice).toFixed(2)}<br />{earnings.week.toFixed(2)}</Statistic.Value>
+          <Statistic.Value text>${(earnings.week * gasPrice).toFixed(2)}<br />GAS {earnings.week.toFixed(2)}</Statistic.Value>
           <Statistic.Label>Per Week</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value text>${(earnings.month * gasPrice).toFixed(2)}<br />{earnings.month.toFixed(2)}</Statistic.Value>
+          <Statistic.Value text>${(earnings.month * gasPrice).toFixed(2)}<br />GAS {earnings.month.toFixed(2)}</Statistic.Value>
           <Statistic.Label>Per Month</Statistic.Label>
         </Statistic>
         <Statistic>
-          <Statistic.Value text>${(earnings.year * gasPrice).toFixed(2)}<br />{earnings.year.toFixed(2)}</Statistic.Value>
+          <Statistic.Value text>${(earnings.year * gasPrice).toFixed(2)}<br />GAS {earnings.year.toFixed(2)}</Statistic.Value>
           <Statistic.Label>Per Year</Statistic.Label>
         </Statistic>
       </Statistic.Group>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Header, Icon, Button, Image } from 'semantic-ui-react';
+import { Container, Card, Header, Input, Button, Image } from 'semantic-ui-react';
 
 const Welcome = ({ setView }) => (
   <Container textAlign="center">
@@ -21,39 +21,26 @@ const Welcome = ({ setView }) => (
         Select wallet to see estimated gas earnings or select calculator to estimate gas earnings for n neo
       </Header.Subheader>
     </Header>
-    <div>
+
+
+      <Input focus placeholder="Enter ADdress" />
       <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
       <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
-    </div>
-    {/* <Card centered>
-      <Image src="/assets/neo_raw.png" />
-      <Card.Content style={{ textAlign: 'center' }}>
-        <Card.Header as="a">
-        Check your wallet
-        </Card.Header>
-        <Card.Meta>
-      See estimated GAS generation based on your wallet, or use the calucator to estimate gas earning for n NEO
-        </Card.Meta>
-      </Card.Content>
-      <Card.Content extra>
-        <Container>
-         
-        </Container>
-      </Card.Content>
-    </Card> */}
-  </Container>
+</Container>
+   
+
 );
 
 
 export default Welcome;
 
 
-/* <Item>
+{/* /* <Item>
       <Item.Header>
       Welcome!
       </Item.Header>
       <Item.Meta>
         Input address or click calculator for Gas Stats
       </Item.Meta>
-    </Item>
-    */
+    </Item> */}
+    
