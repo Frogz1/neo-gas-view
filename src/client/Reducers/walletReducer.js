@@ -5,6 +5,7 @@ const initialState = {
   GAS: '',
   unspentGas: [],
   unspentNEO: [],
+  newAddress: '',
 };
 
 export function wallet(state = initialState , action) {
