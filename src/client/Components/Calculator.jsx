@@ -7,7 +7,7 @@ const REWARD = 0.00000007;
 
 
 const Calculator = ({ gasPrice, blockRate, neoCount = 100 }) => {
-  const calculateGasEarnings = (neoCount = 1) => {
+  const calculateGasEarnings = () => {
     const blocksPerDay = DAY / blockRate;
     const dailyReward = blocksPerDay * (REWARD * neoCount);
     return {
