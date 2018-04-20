@@ -1,5 +1,5 @@
 const initialState = {
-  view: 'welcome',
+  view: 'wallet',
 };
 
 export function view(state = initialState, action) {

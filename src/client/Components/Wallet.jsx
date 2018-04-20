@@ -49,7 +49,7 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
         style={{ width: '315px', marginRight: '5px' }}
         size="small"
         type="text"
-        error={wallet.error}
+        // error={wallet.error}
         value={wallet.newAddress}
         onChange={(e, data) => {
           updateAddress(data.value)
@@ -58,7 +58,7 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
       <Button size="medium" disabled={wallet.error} onClick={() => handleLoadWallet(wallet.newAddress)}>
           Check Address
       </Button>
-      <footer>Donations welcome :)</footer>
+      <footer>⚔️</footer>
     </Container>
   </Container>
 );
