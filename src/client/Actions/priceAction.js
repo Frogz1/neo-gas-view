@@ -22,7 +22,6 @@ export function loadBlockRate() {
 export function loadPrices() {
   return (dispatch) => {
     getCurrentPrice((prices) => {
-      console.log(prices)
       dispatch(setPriceUSD(prices));
     });
   };

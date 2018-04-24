@@ -24,31 +24,20 @@ const Welcome = ({ setView, wallet, updateAddress }) => (
 
 
     <Input
-        style={{ width: '315px', marginRight: '5px' }}
-        size="small"
-        type="text"
-        value={wallet.newAddress}
-        onChange={(e, data) => {
+      style={{ width: '315px', marginRight: '5px' }}
+      size="small"
+      type="text"
+      value={wallet.newAddress}
+      onChange={(e, data) => {
           updateAddress(data.value);
       }}
-      />
+    />
     <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
     <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
-    </Container>
+  </Container>
 
 
 );
 
 
 export default Welcome;
-
-
-{ /* /* <Item>
-      <Item.Header>
-      Welcome!
-      </Item.Header>
-      <Item.Meta>
-        Input address or click calculator for Gas Stats
-      </Item.Meta>
-    </Item> */ }
-

@@ -1,45 +1,87 @@
 import React from 'react';
-import { Statistic, Input, Container, Button, Image} from 'semantic-ui-react';
+import { Statistic, Input, Container, Button, Image, Loader } from 'semantic-ui-react';
 
 // 86400 / avg block time *(0.00000007 * neoCount)=GasPerDay = GasPerDay * GasCost = USD•Day
 const DAY = 86400;
 const REWARD = 0.00000007;
 
 
-const Calculator = ({ gasPrice, blockRate, neoCount = 100 }) => {
+const Calculator = ({
+  gasPrice, blockRate, loaded, neoCount = 100,
+}) => {
   const calculateGasEarnings = () => {
     const blocksPerDay = DAY / blockRate;
     const dailyReward = blocksPerDay * (REWARD * neoCount);
     return {
-      day: dailyReward,
-      week: dailyReward * 7,
-      month: dailyReward * 30,
-      year: dailyReward * 365,
+      day: {
+        usd: (dailyReward * gasPrice).toFixed(2),
+        gas: (dailyReward).toFixed(2),
+      },
+      week: {
+        usd: ((dailyReward * 7) * gasPrice).toFixed(2),
+        gas: (dailyReward * 7).toFixed(2),
+      },
+      month: {
+        usd: ((dailyReward * 30) * gasPrice).toFixed(2),
+        gas: (dailyReward * 30).toFixed(2),
+      },
+      year: {
+        usd: ((dailyReward * 365) * gasPrice).toFixed(2),
+        gas: (dailyReward * 365).toFixed(2),
+      },
     };
   };
   const earnings = calculateGasEarnings(neoCount);
-  return (
-    <Container fluid>
-      <Statistic.Group>
-        <Statistic>
-          <Statistic.Value text>${(earnings.day * gasPrice).toFixed(2)}<br />GAS {earnings.day.toFixed(2)}</Statistic.Value>
-          <Statistic.Label>Per Day</Statistic.Label>
-        </Statistic>
-        <Statistic>
-          <Statistic.Value text>${(earnings.week * gasPrice).toFixed(2)}<br />GAS {earnings.week.toFixed(2)}</Statistic.Value>
-          <Statistic.Label>Per Week</Statistic.Label>
-        </Statistic>
-        <Statistic>
-          <Statistic.Value text>${(earnings.month * gasPrice).toFixed(2)}<br />GAS {earnings.month.toFixed(2)}</Statistic.Value>
-          <Statistic.Label>Per Month</Statistic.Label>
-        </Statistic>
-        <Statistic>
-          <Statistic.Value text>${(earnings.year * gasPrice).toFixed(2)}<br />GAS {earnings.year.toFixed(2)}</Statistic.Value>
-          <Statistic.Label>Per Year</Statistic.Label>
-        </Statistic>
-      </Statistic.Group>
-    </Container>
-  );
+  return loaded ?
+    (
+      <Container fluid>
+        <Statistic.Group>
+          <Statistic>
+            <Statistic.Value text>${
+              earnings.day.usd ?
+              earnings.day.usd :
+              earnings.day
+              }
+              <br />GAS {
+                earnings.day.gas ?
+                earnings.day.gas :
+                earnings.day
+                }
+            </Statistic.Value>
+            <Statistic.Label>Per Day</Statistic.Label>
+          </Statistic>
+          <Statistic>
+            <Statistic.Value text>${
+              earnings.week.usd
+            }<br />GAS {
+              earnings.day.gas
+              }
+            </Statistic.Value>
+            <Statistic.Label>Per Week</Statistic.Label>
+          </Statistic>
+          <Statistic>
+            <Statistic.Value text>${
+              earnings.month.usd
+            }<br />GAS {
+              earnings.month.gas
+              }
+            </Statistic.Value>
+            <Statistic.Label>Per Month</Statistic.Label>
+          </Statistic>
+          <Statistic>
+            <Statistic.Value text>${
+              earnings.year.usd
+              }<br />GAS {
+              earnings.year.gas
+              }
+            </Statistic.Value>
+            <Statistic.Label>Per Year</Statistic.Label>
+          </Statistic>
+        </Statistic.Group>
+      </Container>
+    ) : (
+      <Loader active />
+    );
 };
 
 { /* <Container style={{ margin: '10px' }} textAlign="center">
