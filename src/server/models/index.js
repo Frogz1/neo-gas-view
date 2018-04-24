@@ -1,32 +1,42 @@
-'use strict';
+
 require('dotenv').config();
-const Promise = require('bluebird');
-const mongoClient = require('mongodb').MongoClient;
+
+const mongoose = require('mongoose');
 const axios = require('axios');
 
-const url = 'mongodb://localhost:27017/neoGasViewer';
+const url = 'mongodb://localhost/neoGasViewer';
+mongoose.connect('mongodb://localhost/test').then((data) => 
+console.log(`SUCCESS:`))
+.catch(error => console.log(`ERRRROR: ${error}`))
 
+const Blockrate = mongoose.model('Blockrate', {
+  block_rate: Number, 
+  calculatedAt: Date,
+});
 
-function getMongoConnection(url) {
-  return mongoClient.connect(url, { promiseLibrary: Promise })
-    .disposer(conn => conn.close())
-}
-
-
-const getWalletInfo = async () => {
-  Promise.using(getMongoConnection(url), conn => {
-    return axios
-      .get(`/v1/wallet_history/${process.env.ADDRESS}`)
-      .then(response => {
-        conn
-          .collection('wallet')
-          .insertOne(response.data)
-          .then((success) => {
-            console.log(`successfully saved ${success}`);
-          })
-          .catch(error => console.log(error));
+const updateBlockRate = () => {
+  axios
+    .get('http://localhost:8001/v1/blocks/get_last_blockrate')
+    .then(({data}) => {
+      const blockrate = new Blockrate({
+        block_rate: data.last_twenty_block_avg,
+        calculatedAt: new Date().toUTCString()
       })
-  })
+        .save()
+        .then((value) => {
+          console.log(`Success: ${value}`);
+
+        })
+        .catch(err => {
+          console.log(`ouch, got an error: \n ${err}`)
+          mongoose.disconnect();
+        process.exit()})
+
+    }).catch(err => {
+      console.log(err)
+      process.exit();
+    })
 }
 
-getWalletInfo();
+
+module.exports = { updateBlockRate };
