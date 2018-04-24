@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Wallet from '../Components/Wallet';
-import { loadWallet, setWalletAddress  } from '../Actions/walletAction';
+import { loadWallet, setWalletAddress } from '../Actions/walletAction';
 
 const mapStateToProps = ({ wallet, currentPrice }) => ({
   wallet,

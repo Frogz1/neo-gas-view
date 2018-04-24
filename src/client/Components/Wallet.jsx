@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Header, Table, Image, Input, Button } from 'semantic-ui-react';
+import { Container, Header, Table, Image, Input, Button, Loader } from 'semantic-ui-react';
 import CalculatorContainer from '../Containers/CalculatorContainer';
 
-const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) => (
-
+const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress }) => {
+ return wallet.loaded ?  ( 
   <Container textAlign="center">
     <CalculatorContainer />
     <Header as="h2" icon>
@@ -14,6 +14,7 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
       </Header.Subheader>
     </Header>
     <Container>
+      <Loader />
     </Container>
     <Table celled>
       <Table.Header>
@@ -52,7 +53,7 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
         // error={wallet.error}
         value={wallet.newAddress}
         onChange={(e, data) => {
-          updateAddress(data.value)
+          updateAddress(data.value);
       }}
       />
       <Button size="medium" disabled={wallet.error} onClick={() => handleLoadWallet(wallet.newAddress)}>
@@ -61,6 +62,9 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
       <footer>Input address</footer>
     </Container>
   </Container>
-);
+ ):  (
+   <Loader active={!wallet.loaded} inline='centered' />
+ ); 
+};
 
 export default Wallet;

@@ -21,6 +21,7 @@ const getWalletStats = async (address, callback) => {
         unclaimedGas: response.data.unclaimedGas,
         unspentGas: reduceUnspent(response.data.GAS.unspent),
         unspentNEO: reduceUnspent(response.data.NEO.unspent),
+        loaded: true,
       };
       callback(wallet);
     })

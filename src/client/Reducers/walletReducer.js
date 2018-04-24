@@ -7,9 +7,10 @@ const initialState = {
   unspentNEO: [],
   newAddress: '',
   error: true,
+  loaded: false,
 };
 
- export function wallet(state = initialState, action) {
+export function wallet(state = initialState, action) {
   switch (action.type) {
     case 'SET_WALLET':
       return Object.assign({}, state, {
@@ -20,6 +21,7 @@ const initialState = {
         unclaimedGas: action.wallet.unclaimedGas,
         unspentGas: action.wallet.unspentGas,
         unspentNEO: action.wallet.unspentNEO,
+        loaded: action.wallet.loaded,
       });
     case 'SET_WALLET_ADDRESS':
       return Object.assign({}, state, {
