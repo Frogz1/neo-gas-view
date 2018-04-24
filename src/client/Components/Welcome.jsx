@@ -7,9 +7,9 @@ const Welcome = ({ setView, wallet, updateAddress }) => (
     <Container textAlign="center">
       <Header as="h2" icon>
         <Image src="/assets/neo-logo.ico" />
-        Welcome!
+        Welcome to ngas.io!
         <Header.Subheader>
-          Select wallet to see estimated gas earnings for your wallet or select calculator to estimate gas earnings by NEO quantity
+          Select wallet for estimated gas earnings by wallet address or select calculator to estimate gas earnings by NEO quantity
         </Header.Subheader>
       </Header>
     </Container>

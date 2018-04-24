@@ -9,9 +9,9 @@ const MenuBar = ({
     <Container>
       <Menu.Item name="wallet" as="a" onClick={() => setView('wallet')} />
       <Menu.Item name="calculator" as="a" onClick={() => setView('calculator')} />
-      <Menu.Item>
+      {/* <Menu.Item>
         <Input icon="search" placeholder="Enter Address..." />
-      </Menu.Item>
+      </Menu.Item> */}
     </Container>
     <Menu.Item name="neo">
       <Item.Image size="mini" src="/assets/neo-logo.ico" />
