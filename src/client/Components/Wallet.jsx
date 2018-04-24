@@ -58,7 +58,7 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress, }) =>
       <Button size="medium" disabled={wallet.error} onClick={() => handleLoadWallet(wallet.newAddress)}>
           Check Address
       </Button>
-      <footer>⚔️</footer>
+      <footer>Input address</footer>
     </Container>
   </Container>
 );
