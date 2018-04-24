@@ -3,7 +3,7 @@ import { setNeoQuantity } from '../Actions/walletAction';
 import NeoInput from '../Components/NeoInput';
 
 const mapStateToProps = ({ wallet }) => ({
-  wallet,
+  neoQuantity: wallet.NEO,
 });
 
 const mapDispatchToProps = dispatch => ({

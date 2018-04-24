@@ -2,20 +2,20 @@ import React from 'react';
 import { Input, Container, Header, Button } from 'semantic-ui-react';
 import CalculatorContainer from '../Containers/CalculatorContainer';
 
-const NeoInput = ({ updateNeoQuantity }) => {
+const NeoInput = ({ updateNeoQuantity, neoQuantity }) => {
   let showCalculator = false;
   return (
     <div>
       <Container textAlign="center">
-        <CalculatorContainer />
-        <Header as="h2">
-      Check Earnings
+        <Header as="h2" style={{ padding: '5px' }}>
+      Input NEO amount
           <Header.Subheader>
-      Input NEO amount for estimated GAS generation
+      Estimated GAS earnings for {neoQuantity} NEO
           </Header.Subheader>
         </Header>
       </Container>
       <Container textAlign="center">
+        <CalculatorContainer style={{ padding: '20px'}} />
         <Input
           style={{ width: '315px', marginRight: '5px', padding: '5px' }}
           size="small"
@@ -30,6 +30,9 @@ const NeoInput = ({ updateNeoQuantity }) => {
         }}
         >GO
         </Button>
+        <footer>
+          Estimated GAS earnings for {neoQuantity} NEO
+        </footer>
       </Container>
     </div>
   );
