@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, Header, Table, Image, Input, Button, Loader } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import CalculatorContainer from '../Containers/CalculatorContainer';
 
-const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress }) => {
- return wallet.loaded ?  ( 
+const Wallet = ({
+  wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress,
+}) => (wallet.loaded ? (
   <Container textAlign="center">
     <CalculatorContainer />
     <Header as="h2" icon>
@@ -45,7 +47,6 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress }) => 
       </Table.Body>
     </Table>
     <Container style={{ margin: '10px' }} textAlign="center">
-      {/* <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" children={<input value={this.state.newAddress} />} onChange={(e, data) => this.setState({ newAddress: data.value })} /> */}
       <Input
         style={{ width: '315px', marginRight: '5px' }}
         size="small"
@@ -62,9 +63,12 @@ const Wallet = ({ wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress }) => 
       <footer>Input address</footer>
     </Container>
   </Container>
- ):  (
-   <Loader active={!wallet.loaded} inline='centered' />
- ); 
+) : (
+  <Loader active={!wallet.loaded} inline="centered" />
+));
+
+Wallet.propTypes = {
+
 };
 
 export default Wallet;

@@ -30,7 +30,7 @@ MenuBar.propTypes = {
   neoUsd: PropTypes.number.isRequired,
   gasUsd: PropTypes.number.isRequired,
   blockRate: PropTypes.number,
-  setView: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
 };
 MenuBar.defaultProps = {
   blockRate: 20,

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Card, Header, Input, Button, Image } from 'semantic-ui-react';
+import { Container, Header, Input, Button, Image } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 const Welcome = ({ setView, wallet, updateAddress }) => (
   <Container textAlign="center">
@@ -35,9 +36,13 @@ const Welcome = ({ setView, wallet, updateAddress }) => (
     <Button onClick={() => setView('wallet')} color="green">Wallet</Button>
     <Button onClick={() => setView('calculator')} color="green">Calculator</Button>
   </Container>
-
-
 );
+
+Welcome.propTypes = {
+  setView: PropTypes.func.isRequired,
+  wallet: PropTypes.object.isRequired,
+  updateAddress: PropTypes.func.isRequired,
+};
 
 
 export default Welcome;
