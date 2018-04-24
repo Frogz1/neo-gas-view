@@ -32,6 +32,10 @@ export function wallet(state = initialState, action) {
       return Object.assign({}, state, {
         address: action.address,
       });
+    case 'SET_NEO_QUANTITY':
+      return Object.assign({}, state, {
+        NEO: action.NEO,
+      });
     default:
       return state;
   }

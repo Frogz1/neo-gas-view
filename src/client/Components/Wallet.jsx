@@ -7,7 +7,6 @@ const Wallet = ({
   wallet, gasUsd, neoUsd, handleLoadWallet, updateAddress,
 }) => (wallet.loaded ? (
   <Container textAlign="center">
-    <CalculatorContainer />
     <Header as="h2" icon>
       <Image src="/assets/neo-logo.ico" />
       NEO Address
@@ -15,6 +14,7 @@ const Wallet = ({
         { wallet.address }
       </Header.Subheader>
     </Header>
+    <CalculatorContainer />
     <Container>
       <Loader />
     </Container>

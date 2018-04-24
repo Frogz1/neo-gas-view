@@ -1,5 +1,5 @@
 import React from 'react';
-import { Statistic, Input, Container, Button, Image, Loader } from 'semantic-ui-react';
+import { Statistic, Input, Container, Header, Image, Loader } from 'semantic-ui-react';
 
 // 86400 / avg block time *(0.00000007 * neoCount)=GasPerDay = GasPerDay * GasCost = USD•Day
 const DAY = 86400;
@@ -34,8 +34,14 @@ const Calculator = ({
   const earnings = calculateGasEarnings(neoCount);
   return loaded ?
     (
-      <Container fluid>
-        <Statistic.Group>
+      <Container>
+        {/* <Header as="h2">
+            GAS
+          <Header.Subheader>
+            Estimated earnings based on current block rate and reward
+          </Header.Subheader>
+        </Header> */}
+        <Statistic.Group widths="4">
           <Statistic>
             <Statistic.Value text>${
               earnings.day.usd ?

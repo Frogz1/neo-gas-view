@@ -11,6 +11,14 @@ const setWalletTitle = address => ({
   address,
 });
 
+export function setNeoQuantity(NEO) {
+  return {
+    type: 'SET_NEO_QUANTITY',
+    NEO,
+  };
+}
+
+
 export function setWalletAddress(newAddress, error) {
   return {
     type: 'SET_WALLET_ADDRESS',
