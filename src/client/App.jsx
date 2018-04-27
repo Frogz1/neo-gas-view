@@ -41,21 +41,6 @@ class App extends Component {
       <div>
         <MenuBarContainer />
         <PrimaryContentContainer />
-        {/* <Container style={{ margin: '10px' }} textAlign="center">
-          <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" value={store.getState().wallet.newAddress} onChange={(e, data) =>  {
-            console.log(data.value)
-            store.dispatch(setWalletAddress(data.value)) }} />
-          <Button
-            size="medium"
-            onClick={() => {
-          store.dispatch(loadWallet(store.getState().wallet.newAddress));
-         
-        }}
-          >
-          Check Address
-          </Button>
-          <footer>Donations welcome :)</footer>
-        </Container> */}
         <Container textAlign="center" style={{ color: 'grey', marginTop: '50px' }}>
           <footer>
             Donations welcome AXMgaAN8eKi3TezBbcvH79RhNXTqzCVgjx <span role="image" aria-label="nerdy smile emoji">🤓</span>
