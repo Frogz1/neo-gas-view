@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Menu, Item, Container } from 'semantic-ui-react';
+import { Input, Menu, Item, Container, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const MenuBar = ({
@@ -7,6 +7,12 @@ const MenuBar = ({
 }) => (
   <Menu style={{ textAlign: 'center' }} stackable>
     <Container>
+      <Menu.Item name="github" as="a" href="http://www.github.com/Frogz1">
+        <Icon name="github" />
+      </Menu.Item>
+      <Menu.Item name="twitter" as="a" href="http://www.twitter.com/redharp_">
+        <Icon name="twitter" />
+      </Menu.Item>
       <Menu.Item name="wallet" as="a" onClick={() => setView('wallet')} />
       <Menu.Item name="calculator" as="a" onClick={() => setView('calculator')} />
       {/* <Menu.Item>
