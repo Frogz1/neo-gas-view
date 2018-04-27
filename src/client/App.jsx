@@ -56,6 +56,11 @@ class App extends Component {
           </Button>
           <footer>Donations welcome :)</footer>
         </Container> */}
+        <Container textAlign="center" style={{ color: 'grey', marginTop: '50px' }}>
+          <footer>
+            Donations welcome AXMgaAN8eKi3TezBbcvH79RhNXTqzCVgjx <span role="image" aria-label="nerdy smile emoji">🤓</span>
+          </footer>
+        </Container>
       </div>
     );
   }
