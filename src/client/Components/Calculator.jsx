@@ -60,7 +60,7 @@ const Calculator = ({
             <Statistic.Value text>${
               earnings.week.usd
             }<br />GAS {
-              earnings.day.gas
+              earnings.week.gas
               }
             </Statistic.Value>
             <Statistic.Label>Per Week</Statistic.Label>
