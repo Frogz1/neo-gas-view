@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Provider } from 'react-redux';
-import { Container, Icon } from 'semantic-ui-react';
+import { Container, Icon, Image } from 'semantic-ui-react';
 import { store } from './store/store';
 import MenuBarContainer from './Containers/MenuBarContainer';
 import PrimaryContentContainer from './Containers/PrimaryContentContainer';
@@ -27,6 +27,9 @@ class App extends Component {
             </a>
             <a href="http://www.twitter.com/redharp_" aria-label="twitter profile for developer">
               <Icon name="twitter" color="black" size="large" />
+            </a>
+            <a href="https://www.binance.com/?ref=10868750" aria-label="binance ref code">
+              Binance Referral Link
             </a>
           </div>
           <footer style={{ color: 'grey', fontSize: '11px' }}>
