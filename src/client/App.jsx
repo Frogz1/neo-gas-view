@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { Provider } from 'react-redux';
-import { Container, Icon, Image } from 'semantic-ui-react';
+import { Container, Icon } from 'semantic-ui-react';
 import { store } from './store/store';
 import MenuBarContainer from './Containers/MenuBarContainer';
 import PrimaryContentContainer from './Containers/PrimaryContentContainer';
