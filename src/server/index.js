@@ -30,7 +30,7 @@ router.get('/v1/wallet_history/:wallet', async (ctx, next) => {
     .then((response) => {
       ctx.response.body = response.data;
     })
-    .catch(err => ctx.response.body = err);
+    .catch((err) => { ctx.response.body = err; });
 });
 
 router.get('/gas2', async (ctx, next) => {
@@ -39,7 +39,7 @@ router.get('/gas2', async (ctx, next) => {
     .then((response) => {
       ctx.response.body = response.data;
     })
-    .catch(err => ctx.response.body = err);
+    .catch((err) => { ctx.response.body = err; });
 });
 //  Get Current wallet details, gas / neo count for wallet
 router.get('/v1/wallet/:wallet', async (ctx, next) => {
@@ -52,9 +52,9 @@ router.get('/v1/wallet/:wallet', async (ctx, next) => {
           wallet.unclaimedGas = Number(data.total_unspent_claim) / 100000000;
           ctx.response.body = wallet;
         })
-        .catch(err => ctx.response.body = err);
+        .catch((err) => { ctx.response.body = err; });
     })
-    .catch(err => ctx.response.body = err);
+    .catch((err) => { ctx.response.body = err; });
 });
 
 // Get Current USD value for NEO / GAS
@@ -62,8 +62,8 @@ router.get('/v1/current_price/', async (ctx, next) => {
   const prices = { neo: 0, gas: 0 };
   await axios
     .get('https://api.coinmarketcap.com/v1/ticker/NEO/?convert=USD')
-    .then(async (response) => {
-      prices.neo = Number(Number(response.data[0].price_usd).toFixed(2));
+    .then(async (res) => {
+      prices.neo = Number(Number(res.data[0].price_usd).toFixed(2));
       await axios
         .get('https://api.coinmarketcap.com/v1/ticker/GAS/?convert=USD')
         .then((response) => {
@@ -72,9 +72,16 @@ router.get('/v1/current_price/', async (ctx, next) => {
         })
         .catch(error => console.log(error));
     })
-    .catch(error => ctx.request.body = 'error caught');
+    .catch(() => { ctx.request.body = 'error caught'; });
 });
 
+const getAverageTime = (blocks) => {
+  const blockTimes = blocks.map(block => block.time);
+  const blockTime = blockTimes
+    .map((block, i, arr) => (i < arr.length - 1 ? arr[i] - arr[i + 1] : 0))
+    .reduce((a, b) => a + b);
+  return (blockTime / (blockTimes.length - 1)).toFixed(2);
+};
 // Get last 20 blocks
 router.get('/v1/blocks/get_last_blockrate', async (ctx, next) => {
   await axios
@@ -84,20 +91,9 @@ router.get('/v1/blocks/get_last_blockrate', async (ctx, next) => {
         last_twenty_block_avg: Number(getAverageTime(data)),
       };
     })
-    .catch(err => ctx.response.body = 'error');
+    .catch(() => { ctx.response.body = 'error'; });
 });
-
-const getAverageTime = (blocks) => {
-  const blockTimes = blocks.map(block => block.time);
-  const blockTime = blockTimes.map((block, i, arr) => i < arr.length - 1 ? arr[i] - arr[i + 1] : 0)
-    .reduce((a, b) => a + b);
-  return (blockTime / (blockTimes.length - 1)).toFixed(2);
-};
-
 
 app.use(router.routes());
 
-// setInterval(() => updateBlockRate.updateBlockRate(), 300000)
-
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
-
