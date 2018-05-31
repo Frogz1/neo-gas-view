@@ -1,13 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
-import { Container, Input, Button, Sidebar, Menu, Icon, Segment } from 'semantic-ui-react';
 import MenuBarContainer from './Containers/MenuBarContainer';
 import PrimaryContentContainer from './Containers/PrimaryContentContainer';
-import { loadWallet, setWalletAddress  } from './Actions/walletAction';
-import Calculator from './Components/Calculator';
+import { store } from './store/store';
 
 class App extends Component {
   constructor(props) {
