@@ -58,3 +58,4 @@ typings/
 .env
 
 lastBlocks.js
+.vscode/settings.json
