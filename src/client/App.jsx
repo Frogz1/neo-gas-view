@@ -19,11 +19,12 @@ class App extends Component {
     axios.get(`/v1/wallet/${this.state.address}`)
       .then((response) => {
         const wallet = Object.assign({}, this.state.wallet);
+        console.log(response.data)
 
         this.setState({
           wallet: {
             address: response.data.address,
-            NEO: response.data.NEO,
+            NEO: response.data.balance,
             GAS: response.data.GAS,
             unspentGas: response.data.GAS.unspent.map(a => a.value).reduce((a, b) => a + b),
             unspentNEO: response.data.NEO.unspent.map(a => a.value).reduce((a, b) => a + b),
@@ -38,21 +39,6 @@ class App extends Component {
       <div>
         <MenuBarContainer />
         <PrimaryContentContainer />
-        {/* <Container style={{ margin: '10px' }} textAlign="center">
-          <Input style={{ width: '315px', marginRight: '5px' }} size="small" type="text" value={store.getState().wallet.newAddress} onChange={(e, data) =>  {
-            console.log(data.value)
-            store.dispatch(setWalletAddress(data.value)) }} />
-          <Button
-            size="medium"
-            onClick={() => {
-          store.dispatch(loadWallet(store.getState().wallet.newAddress));
-         
-        }}
-          >
-          Check Address
-          </Button>
-          <footer>Donations welcome :)</footer>
-        </Container> */}
       </div>
     );
   }

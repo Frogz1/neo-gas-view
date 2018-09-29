@@ -1,16 +1,12 @@
 require('dotenv').config();
 const Koa = require('koa');
 const Router = require('koa-router');
-const koaBody = require('koa-body');
 const axios = require('axios');
 const serve = require('koa-static');
 const morgan = require('koa-morgan');
-const moment = require('moment');
-const fs = require('fs');
-const updateBlockRate = require('./models/index');
 
 const PORT = process.env.PORT || 8080;
-const ADDRESS = process.env.ADDRESS;
+const { ADDRESS } = process.env;
 
 const publicFiles = serve('dist');
 
@@ -24,7 +20,7 @@ app.use(morgan('dev'));
 
 app.use(publicFiles);
 
-router.get('/v1/wallet_history/:wallet', async (ctx, next) => {
+router.get('/v1/wallet_history/:wallet', async (ctx) => {
   await axios
     .get(`https://neoscan.io/api/main_net/v1/get_address/${ctx.params.wallet}`)
     .then((response) => {
@@ -33,7 +29,7 @@ router.get('/v1/wallet_history/:wallet', async (ctx, next) => {
     .catch((err) => { ctx.response.body = err; });
 });
 
-router.get('/gas2', async (ctx, next) => {
+router.get('/gas2', async (ctx) => {
   await axios
     .get(`https://api.neonwallet.com/v2/address/balance/${ADDRESS}`)
     .then((response) => {
@@ -42,14 +38,15 @@ router.get('/gas2', async (ctx, next) => {
     .catch((err) => { ctx.response.body = err; });
 });
 //  Get Current wallet details, gas / neo count for wallet
-router.get('/v1/wallet/:wallet', async (ctx, next) => {
+router.get('/v1/wallet/:wallet', async (ctx) => {
+  console.log(`https://api.neoscan.io/api/main_net/v1/get_balance/${ctx.params.wallet}`)
   await axios
-    .get(`https://api.neonwallet.com/v2/address/balance/${ctx.params.wallet}`)
+    .get(`https://api.neoscan.io/api/main_net/v1/get_balance/${ctx.params.wallet}`)
     .then(async (response) => {
       const wallet = response.data;
-      await axios.get(`http://api.neonwallet.com/v2/address/claims/${ctx.params.wallet}`)
-        .then(({ data }) => {
-          wallet.unclaimedGas = Number(data.total_unspent_claim) / 100000000;
+      await axios.get(`http://api.neoscan.io/api/main_net/v1/get_unclaimed/${ctx.params.wallet}`)
+        .then((r) => {
+          wallet.unclaimedGas = Number(r.data.unclaimed);
           ctx.response.body = wallet;
         })
         .catch((err) => { ctx.response.body = err; });
@@ -58,7 +55,7 @@ router.get('/v1/wallet/:wallet', async (ctx, next) => {
 });
 
 // Get Current USD value for NEO / GAS
-router.get('/v1/current_price/', async (ctx, next) => {
+router.get('/v1/current_price/', async (ctx) => {
   const prices = { neo: 0, gas: 0 };
   await axios
     .get('https://api.coinmarketcap.com/v1/ticker/NEO/?convert=USD')
@@ -83,7 +80,7 @@ const getAverageTime = (blocks) => {
   return (blockTime / (blockTimes.length - 1)).toFixed(2);
 };
 // Get last 20 blocks
-router.get('/v1/blocks/get_last_blockrate', async (ctx, next) => {
+router.get('/v1/blocks/get_last_blockrate', async (ctx) => {
   await axios
     .get('https://neoscan.io/api/main_net/v1/get_last_blocks')
     .then(({ data }) => {

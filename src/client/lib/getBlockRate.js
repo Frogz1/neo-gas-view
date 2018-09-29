@@ -4,8 +4,9 @@ const getBlockRate = (callback) => {
   axios
     .get('/v1/blocks/get_last_blockrate')
     .then(({ data }) => {
+      console.log(`block api broke setting to 20 sec temp ${data}`);
       const blockRate = {
-        rate: data.last_twenty_block_avg,
+        rate: 20,
         loaded: true,
       };
       callback(blockRate);
