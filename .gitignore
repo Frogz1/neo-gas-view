@@ -59,3 +59,5 @@ typings/
 
 lastBlocks.js
 .vscode/settings.json
+
+dist
